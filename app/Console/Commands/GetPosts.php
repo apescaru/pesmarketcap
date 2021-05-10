@@ -59,7 +59,9 @@ class GetPosts extends Command
             $result = $this->getHttpResult($endpoint);
 
             foreach ($result->data->children as $post) {
-                $this->parsePost($post, $source);
+                if($post->data->selftext_html != "") {
+                    $this->parsePost($post, $source);
+                }
             }
 
         }
@@ -72,7 +74,7 @@ class GetPosts extends Command
             "unique_id" => $post->data->id,
             "url" => $post->data->url,
             "author" => $post->data->author,
-            "author_id" => $post->data->author_fullname,
+            "author_id" => isset($post->data->author_fullname) ? $post->data->author_fullname : "no author",
             "title" => $post->data->title,
             "description" => $post->data->selftext,
             "description_html" => htmlspecialchars_decode($post->data->selftext_html),
@@ -87,7 +89,7 @@ class GetPosts extends Command
 
         if(!$existingpost) {
             if (!Reddit::where([
-                "author_id" => $data["author_id"],
+                "author" => $data["author"],
                 "title" => $data["title"],
             ])->exists()) {
                 $r = new Reddit();
