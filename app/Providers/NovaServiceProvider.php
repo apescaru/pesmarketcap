@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Nova\Poocoin;
+use App\Nova\Reddit;
 use Illuminate\Support\Facades\Gate;
 use Laravel\Nova\Cards\Help;
 use Laravel\Nova\Nova;
@@ -43,7 +45,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     {
         Gate::define('viewNova', function ($user) {
             return in_array($user->email, [
-                //
+                "dev@dev.com",
             ]);
         });
     }

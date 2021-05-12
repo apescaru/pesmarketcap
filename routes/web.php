@@ -16,3 +16,6 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/poocoin/{id}', [\App\Http\Controllers\PoocoinController::class, 'show'])->name('poocoin.show');
+Route::get('/unassigned', [\App\Http\Controllers\RedditsController::class, 'unassigned'])->name('reddits.unassigned');

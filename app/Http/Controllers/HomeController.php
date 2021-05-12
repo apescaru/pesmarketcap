@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Poocoin;
 use App\Models\Reddit;
 use Illuminate\Http\Request;
 
@@ -24,10 +25,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $reddits = Reddit::orderBy("original_posted_utc", "desc")->limit(100)->get();
+        $poocoins = Poocoin::orderBy("created_at", "desc")->limit(100)->get();
 
         return view('home')->with([
-            "reddits" => $reddits,
+            "poocoins" => $poocoins,
         ]);
     }
 }

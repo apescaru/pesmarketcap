@@ -24,7 +24,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command("get:posts")->everyThirtyMinutes(); 
+        $schedule->command("get:posts")->everyThirtyMinutes();
+        $schedule->command("reddit:poocoin")->hourly();
     }
 
     /**

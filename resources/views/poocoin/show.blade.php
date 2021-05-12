@@ -5,13 +5,14 @@
     <div class="row justify-content-center">
         <div class="col-md-9">
             <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
+                <div class="card-header">{{ $coin->name }}</div>
 
+                @foreach($reddits as $r)
                 <div class="card-body">
-                @foreach($poocoins as $p)
-                    <div style="display: flex; align-content: center;"> <a style="width:30%;font-size: 1.575rem;padding: 0;" href="{{route("poocoin.show", ["id" => $p->id])}}"> {{$p->name}} </a> <span style="padding-left: 25px;"> News gathered: {!! $p->reddits()->count() !!} </span> </div>
-                    @endforeach
+                    <h4> {{ $r->title }} </h4>
+                    <p> {!! $r->description_html !!} </p>
                 </div>
+                @endforeach
             </div>
         </div>
         <div class="col-md-3">
